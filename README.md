@@ -5,7 +5,7 @@ __Overview__
 The Parking Lot Occupancy Detection Project deals with the problem of detecting the occupancy of a parking lot using video analysis. Displaying the status of occupied or vacant spots, tracking the duration of time a vehicle has stayed, and sending notifications on overstayed vehicles fall into its domain. Having an original solution with OpenCV processing and text overlay in CVZone, this tool performs a strong and effective methodology on parking management.
 
 
-__Features__
+__Features__<br/>
 __Real-Time Detection:__ This continuously monitors every car parking space to identify whether it is free or occupied.
 __Occupancy tracking:__ It estimates the time each vehicle spends in a parking space and automatically provides notifications if it detects an overstay.
 __Visual Feedback:__ It shows the status of parking directly onto the video by using color-coded indications.
