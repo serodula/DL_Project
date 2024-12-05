@@ -1,37 +1,79 @@
-# __Project Title - Parking Space Detection System__
+# Parking Space Detection and Occupancy Monitoring System
 
+## Overview
+This project implements an automated system for parking space detection and monitoring using YOLO object detection models. The system processes video footage of parking lots to classify spaces as **vacant** or **occupied**, providing real-time feedback. 
 
-### __Overview__<br/>
-The Parking Lot Occupancy Detection Project deals with the problem of detecting the occupancy of a parking lot using video analysis. Displaying the status of occupied or vacant spots, tracking the duration of time a vehicle has stayed, and sending notifications on overstayed vehicles fall into its domain. Having an original solution with OpenCV processing and text overlay in CVZone, this tool performs a strong and effective methodology on parking management.
+The project uses the YOLOv5 and YOLOv8 models, showcasing their application in detecting parking spaces efficiently and accurately.
 
+---
 
-### __Features:__<br/>
-__Real-Time Detection:__ This continuously monitors every car parking space to identify whether it is free or occupied.<br/>
-__Occupancy tracking:__ It estimates the time each vehicle spends in a parking space and automatically provides notifications if it detects an overstay.<br/>
-__Visual Feedback:__ It shows the status of parking directly onto the video by using color-coded indications.<br/>
-__Statistics Display:__ This displays how many spaces are occupied and unoccupied at any moment in time.<br/>
+## Features
+- Real-time parking occupancy monitoring.
+- Integration with YOLOv5 and YOLOv8 for object detection.
+- Vacant and occupied parking spaces visually marked on video frames.
+- Automated video processing for efficient parking management.
 
+---
 
-## __Getting Started__<br/>
+## Getting Started
 
-### __Prerequisites__<br/>
+### Prerequisites
+- Python 3.8+
+- Required Python libraries:
+  - `numpy`
+  - `opencv-python`
+  - `torch`
+  - `ultralytics`
+  - `pickle`
 
-__Python 3.6+__<br/>
-__OpenCV:__ pip install opencv-python<br/>
-__CVZone:__ pip install cvzone<br/>
-__NumPy:__ pip install numpy<br/>
+### Installation
+1. Clone the repository:
+git clone [https://github.com/your-username/parking-space-monitoring.git](https://github.com/serodula/DL_Project.git)
 
+Usage
+1. Training the YOLO Model
+Prepare the dataset and train the model:
+# Train YOLOv5
+python yolov5/train.py --img 640 --batch 16 --epochs 20 --data data.yaml --weights yolov5s.pt
+# Train YOLOv8
+from ultralytics import YOLO
+model = YOLO('yolov8n.pt')
+model.train(data="data.yaml", epochs=10, batch=16, imgsz=640)
 
+2. Inference and Parking Monitoring
+Run the parking space detection and monitoring system:
+from src.parking_monitor import process_video
 
-### __Implementation Details__<br/>
-It works as follows: <br/>
-__Video Frame Processing:__ It converts each frame from the video feed to grayscale, blurs it, and thresholds it so that the parked vehicles stand out.<br/>
-__Parking Spot Detection:__ Crop the ROI of each parking space and analyze it. The count of the pixels will define whether the space is vacant or occupied.<br/>
-__Occupancy and Overstay Tracking:__ A dictionary can keep a record of each vehicle's entry timing. If a vehicle exceeds the threshold time set, an "Overstay" alert can be indicated.<br/>
-__User Interface:__ Visual indicators of parking status; statistics of occupied/vacant spaces are calculated and updated automatically.<br/>
+# Inputs
+vid_path = "videos/input_parking_lot.mp4"
+weights_path = "models/yolov8-best.pt"
+output_path = "videos/output_monitoring.mp4"
+pos_pickle_path = "data/CarParkPos.pkl"
 
+# Execute
+process_video(vid_path, output_path, weights_path, pos_pickle_path)
 
-### __Acknowledgments__<br/>
+3. Results
+Processed video files with overlaid parking space statuses.
+Counts of vacant and occupied spaces displayed in real-time.
 
-__OpenCV: https://opencv.org/__<br/>
-__CVZone: https://github.com/cvzone/cvzone__<br/>
+Results
+YOLOv5 Demo 
+YOLOv8 Demo
+
+Metrics
+Accuracy: YOLOv8 outperformed YOLOv5 in detection precision.
+Speed: YOLOv8 achieved real-time inference speeds.
+
+Contributing
+Contributions are welcome! Please follow these steps:
+Fork the repository.
+Create a new branch (git checkout -b feature-branch).
+Commit changes (git commit -m 'Add new feature').
+Push to the branch (git push origin feature-branch).
+Open a pull request.
+
+Acknowledgments
+Ultralytics for YOLOv5 and YOLOv8.
+Roboflow for dataset preparation tools.
+Community contributors for open-source advancements in computer vision.
