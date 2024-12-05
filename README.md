@@ -27,10 +27,10 @@ The project uses the YOLOv5 and YOLOv8 models, showcasing their application in d
   - `pickle`
 
 ### Installation
-# 1. Clone the repository:
-git clone [https://github.com/your-username/parking-space-monitoring.git](https://github.com/serodula/DL_Project.git)
+# Clone the repository:
+git clone https://github.com/serodula/DL_Project.git 
 
-Usage
+### Usage
 # 1. Training the YOLO Model
 Prepare the dataset and train the model:
 Train YOLOv5
@@ -57,15 +57,15 @@ process_video(vid_path, output_path, weights_path, pos_pickle_path)
 Processed video files with overlaid parking space statuses.
 Counts of vacant and occupied spaces displayed in real-time.
 
-# Results
+## Results
 YOLOv5 Demo 
 YOLOv8 Demo
 
-# Metrics
+## Metrics
 Accuracy: YOLOv8 outperformed YOLOv5 in detection precision.
 Speed: YOLOv8 achieved real-time inference speeds.
 
-# Contributing
+## Contributing
 Contributions are welcome! Please follow these steps:
 Fork the repository.
 Create a new branch (git checkout -b feature-branch).
